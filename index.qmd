@@ -7,4 +7,4 @@ format: html
 
 Este site apresenta uma análise de correlação e regressão com R.
 
-Acesse no menu acima ou clique [aqui](relatorio_html.qmd).
+Acesse no menu acima ou clique [aqui](relatorio_html.html).

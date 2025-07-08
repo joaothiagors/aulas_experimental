@@ -1,0 +1,170 @@
+[
+  {
+    "objectID": "relatorio_html/relatorio_html.html#exemplo",
+    "href": "relatorio_html/relatorio_html.html#exemplo",
+    "title": "Correlação e Regressão",
+    "section": "Exemplo",
+    "text": "Exemplo\nOs dados a seguir são referentes à altura de árvore (\\(Y\\)) e seu dimâmero à altura do peito (\\(X\\)).\n\nTabelaGráfico de Dispersão\n\n\n\n\n\n\n\n\n\n\n\n\n\nCódigo\nwith(data,\n     plot(dap,altura,\n          xlab=\"DAP (cm)\",\n          ylab=\"Altura (cm)\",\n          pch=16)\n     )\n\n\n\n\n\nAltura (m) e diâmetro à altura do peito (cm) de árvores (Dados simulados)."
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#exemplo-1",
+    "href": "relatorio_html/relatorio_html.html#exemplo-1",
+    "title": "Correlação e Regressão",
+    "section": "Exemplo",
+    "text": "Exemplo\nOs dados a seguir são referentes ao espaçamento das linhas na cultura de soja (\\(X\\)) e à fração da radiação solar extinta pela planta (\\(Y\\)) (Andrade e Ogliari, 2007).\n\nTabelaGráfico de Dispersão\n\n\n\n\n\n\n\n\n\n\n\n\n\nCódigo\nwith(dados2,\n     plot(radiacao,espacamento,\n          xlab=\"Espaçamento (m)\",\n          ylab=\"Radiação (%)\",\n          pch=16)\n     )\n\n\n\n\n\nGráfico de dispersão das variáveis radiação e espaçamento (Andrade e Ogliari, 2007)."
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#exemplo-2",
+    "href": "relatorio_html/relatorio_html.html#exemplo-2",
+    "title": "Correlação e Regressão",
+    "section": "Exemplo",
+    "text": "Exemplo\nOs dados a seguir são referentes à salinidade (g/L) e à temperatura na região III da Lagoa da Conceição, Florianópolis-SC (Andrade e Ogliari, 2007).\n\nTabelaGráfico de Dispersão\n\n\n\n\n\n\n\n\n\n\n\n\n\nCódigo\nwith(data2,\n     plot(salinidade,temperatura,\n          xlab=\"Salinidade (g/L)\",\n          ylab=\"Temperatura (˚C)\",\n          pch=16)\n     )\n\n\n\n\n\nGráfico de dispersão das variáveis salinidade e temperatura (Andrade e Ogliari, 2007).\n\n\n\n\n\n\n\n\n\n\n\n\n\nCoeficiente de Correlação Linear de Pearson\n\n\n\nQuantifica a correlação entre duas variáveis quantitativas.\n\\[ \\mathbf{-1 \\le r \\le 1} \\]\n\n\n\n\n\nDiferentes medidas de correlação entre duas variáveis quantitativas."
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#exemplo-3",
+    "href": "relatorio_html/relatorio_html.html#exemplo-3",
+    "title": "Correlação e Regressão",
+    "section": "Exemplo",
+    "text": "Exemplo\nConsiderando-se o exemplo de altura da árvore (\\(Y\\)) e o diâmetro à altura do peito (\\(X\\)), calcular o valor do coeficiente de correlação de Pearson.\n\nTabelaCorrelação de Pearson\n\n\n\n\n\n\n\n\n\n\n\n\n\nCódigo\nwith(data_new,\n     cor.test(x,y))\n\n\n\n    Pearson's product-moment correlation\n\ndata:  x and y\nt = 20.757, df = 9, p-value = 6.541e-09\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n 0.9595057 0.9974181\nsample estimates:\n      cor \n0.9897163 \n\n\n\n\n\nAplicação\n\\[ r = \\frac{10(1970,51) - (128,5)(136,0)}{\\sqrt{10(1967,23)-(128,5)^2}\\sqrt{10(2011,94)-(136,0)^2}}\\]\n\\[ r = \\frac{2229,1}{2264,956}  = 0,982\\]"
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#exemplo-4",
+    "href": "relatorio_html/relatorio_html.html#exemplo-4",
+    "title": "Correlação e Regressão",
+    "section": "Exemplo",
+    "text": "Exemplo\nSejam duas variáveis \\(X\\) e \\(Y\\) quaisquer.\n\nTabelaDescritivaCorrelação de Pearson\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCódigo\nwith(dados3,\n     cor.test(x,y))\n\n\n\n    Pearson's product-moment correlation\n\ndata:  x and y\nt = 11.062, df = 6, p-value = 3.249e-05\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n 0.8707715 0.9958620\nsample estimates:\n      cor \n0.9763482 \n\n\n\n\n\n\\[  r = \\frac{188,25}{\\sqrt{(40,88)}\\sqrt{(909,50)}} = 0,976  \\]"
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#considerações-sobre-a-correlação",
+    "href": "relatorio_html/relatorio_html.html#considerações-sobre-a-correlação",
+    "title": "Correlação e Regressão",
+    "section": "Considerações sobre a correlação",
+    "text": "Considerações sobre a correlação\n\nA força de uma associação pode ser medida por um coeficiente de correlação.\nO coeficiente de correlação de Pearson é uma medida da intensidade de associação linear existente entre duas variáveis quantitativas.\nTambém é conhecido como coeficiente de correlação de Pearson, pois sua fórmula de cálculo foi proposta por Karl Pearson em 1896.\nO coeficiente de correlação de Pearson é denominado por \\(\\rho\\) e sua estimativa por \\(r\\).\nA correlação não pode ser maior do que \\(1\\) ou menor do que \\(-1\\).\nUma correlação próxima de zero indica que as duas variáveis não estão correlacionadas.\nUma correlação positiva indica que duas variáveis movem-se juntas, a relação é forte quanto mais próximo é o valor de \\(1\\).\nUma correlação negativa indica que duas variáveis movem-se em direções opostas, que a relação também fica forte quanto mais próxima do valor de \\(-1\\).\nO coeficiente de correlação é adimensional, logo não é afetado pelas unidades de medida das variáveis \\(X\\) e \\(Y\\).\nO sinal positivo indica que as variáveis são diretamente proporcionais, correlação direta, enquanto que o sinal negativo indica que a relação entre as variáveis é inversamente proporcional, correlação inversa."
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#distribuição-normal-bidimensional",
+    "href": "relatorio_html/relatorio_html.html#distribuição-normal-bidimensional",
+    "title": "Correlação e Regressão",
+    "section": "Distribuição Normal Bidimensional",
+    "text": "Distribuição Normal Bidimensional\n\\[f_{X_1 X_2}(x_1 x_2) = \\frac{1}{2 \\pi \\rho_{X_1} \\rho_{X_2} (1 - \\rho^2)^{1/2}} \\mbox{exp} \\left [ - \\frac{1}{2(1 - \\rho^2)} \\left ( \\frac{X_1 - \\mu_{X_1}}{\\rho_{X_1}} \\right )^2 \\\\\n- 2 \\rho \\left ( \\frac{X_1 - \\mu_{X_1}}{\\rho_{X_1}} \\right ) \\left ( \\frac{X_2 - \\mu_{X_2}}{\\rho_{X_2}} \\right ) + \\left ( \\frac{X_2 - \\mu_{X_2}}{\\rho_{X_2}} \\right )^2 \\right ]\\]\nFonte: Demétrio e Zocchi (2010).\n\nDemétrio, C. G. B., e S. S. Zocchi. 2010. «Modelos de Regressão». Piracicaba, SP. ESALQ (apostila). http://www.lce.esalq.usp.br/arquivos/aulas/2011/LCE5801/Apostila.pdf.\n\nTabelaGráfico de dispersãoCorrelação de Pearson\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCódigo\nwith(data3,\n     cor.test(idade,pio)\n     )\n\n\n\n    Pearson's product-moment correlation\n\ndata:  idade and pio\nt = 7.5724, df = 23, p-value = 1.086e-07\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n 0.6750225 0.9296281\nsample estimates:\n      cor \n0.8448209 \n\n\nCódigo\nqt(0.05/2, 23, lower.tail = FALSE) # t_tabelado\n\n\n[1] 2.068658\n\n\nCódigo\npt(7.5718, 23, lower.tail = FALSE) # p_valor\n\n\n[1] 5.438566e-08\n\n\n\n\n\n\nNo exemplo, ao nível de \\(5\\%\\) de significância, \\(t_{0,05;23} = 2,069\\).\n\n\\[ t_{calc} = 0,8448 \\sqrt{\\frac{25-2}{1-0,8448^2}} = 7,5718 \\gt 2,069 \\]\n\nao nível \\(\\alpha = 5\\%\\) há evidências para rejeitarmos \\(H_0\\) e aceitar que \\(\\rho\\) é diferente de zero.\numa vez determinada a existência de correlação na população, pode-se avaliar qualitativamente quanto à intensidade:\n\n\n\n\nMedida de intesidade da correlação linear da Pearson."
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#correlação-espúria",
+    "href": "relatorio_html/relatorio_html.html#correlação-espúria",
+    "title": "Correlação e Regressão",
+    "section": "Correlação Espúria",
+    "text": "Correlação Espúria\n\nÉ comumente encontrada uma forte relação positiva linear entre o número de médicos em uma cidade eo número de mortes por ano nessa cidade!\nÀ primeira vista, podemos ser tentados a concluir que ter mais médicos conduz a mais mortes. Assim, se reduzissemos o número de médicos, esperaríamos menos mortes.\nPodemos calcular correlações para qualquer par de variáveis, mas sempre devemos ter cuidado ao assumir que uma causa variação na outra.\nPor isso, correlação não implica causalidade."
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#ajuste-de-uma-reta",
+    "href": "relatorio_html/relatorio_html.html#ajuste-de-uma-reta",
+    "title": "Correlação e Regressão",
+    "section": "Ajuste de uma reta",
+    "text": "Ajuste de uma reta\n\n\n\n\n\n\nModelo estatístico\n\n\n\n\\[ Y = \\alpha + \\beta x + \\epsilon \\]\n\n\n\n\n\n\n\n\nReta ajustada\n\n\n\n\\[\\hat{Y} = \\hat{\\alpha} + \\hat{\\beta}x\\] ou\n\\[\\hat{Y} = a + bx\\]\n\n\nem que \\(\\hat{\\alpha}\\) (ou \\(a\\)) e \\(\\hat{\\beta}\\) (ou \\(b\\)) são as estimativas dos parâmetros \\(\\alpha\\) e \\(\\beta\\).\n\nEstimativas pelo método dos mínimos quadrados\n\\[Y_i = \\alpha + \\beta x_i + \\epsilon_i\\] Isolando-se \\(\\epsilon-i\\) tem-se:\n\\[\\epsilon_i = Y_i - (\\alpha + \\beta x_i)\\]\nPara obter a reta com menor erro (resíduo) possível em relação ao conjunto de dados, devemos minimizar a soma de quadrados dos erros (resíduos):\n\\[Q = \\sum_{i=1^{n}} \\epsilon_i^2 = \\sum_{i=1^{n}} \\left [ y_i - (\\alpha + \\beta x_i) \\right ]^2 = \\sum_{i=1^{n}} (y_i - \\alpha - \\beta x_i)^2\\]\n\\(\\frac{\\partial Q}{\\partial \\alpha} = 0 \\rightarrow 2 \\sum_{i=1^{n}} (y_i - \\hat{\\alpha} - \\hat{\\beta x_i})(-1) = 0\\) \\((I)\\)\n\\(\\frac{\\partial Q}{\\partial \\beta} = 0 \\rightarrow 2 \\sum_{i=1^{n}} (y_i - \\hat{\\alpha} - \\hat{\\beta x_i})(-x_i) = 0\\) \\((II)\\)\nIsolando \\(\\hat{\\alpha}\\) em \\((I)\\), tem-se:\n\\[\\sum_{i=1}^{n} (y_i - \\hat{\\alpha} - \\hat{\\beta x_i}) = 0 = \\sum_{i=1}^{n} y_i - n\\hat{\\alpha} - \\hat{\\beta} \\sum_{i=1}^{n} x_i = 0\\]\n\\[\\sum_{i=1}^{n} y_i - \\hat{\\beta} \\sum_{i=1}^{n} x_i = n\\hat{\\alpha}\\]\n\\[\\hat{\\alpha} = \\frac{\\sum_{i=1}^{n} y_i}{n} - \\hat{\\beta} \\frac{ \\sum_{i=1}^{n} x_i}{n}\\]\n\\[\\hat{\\alpha} = \\bar{y} - \\hat{\\beta} \\bar{x}\\]\nSubstituindo \\((I)\\) em \\((II)\\), tem-se:\n\\[\\sum_{i=1}^{n} x_i \\left (y_i - (\\bar{y} - \\hat{\\beta} \\bar{x}) - \\hat{\\beta} x_i \\right ) = 0\\]\n\\[\\sum_{i=1}^{n} x_i y_i - \\sum_{i=1}^{n} x_i \\bar{y} + \\hat{\\beta} \\sum_{i=1}^{n} x_i \\bar{x} - \\hat{\\beta} \\sum_{i=1}^{n} x_i^2 = 0\\]\n\\[\\sum_{i=1}^{n} x_i y_i - \\sum_{i=1}^{n} x_i \\frac{\\sum_{i=1}^{n} y_i}{n} = - \\hat{\\beta} \\sum_{i=1}^{n} x_i \\frac{\\sum_{i=1}^{n} x_i}{n} + \\hat{\\beta} \\sum_{i=1}^{n} x_i^2\\]\n\\[\\hat{\\beta} \\left ( \\sum_{i=1}^{n} x_i^2 - \\frac{(\\sum_{i=1}^{n} x_i)^2}{n}\\right ) = \\sum_{i=1}^{n} x_i y_i - \\frac{\\sum_{i=1}^{n} x_i \\sum_{i=1}^{n} y_i}{n}\\]\n\\[\\hat{\\beta} \\left ( n \\sum_{i=1}^{n} x_i^2 - (\\sum_{i=1}^{n} x_i)^2 \\right ) = n \\sum_{i=1}^{n} x_i y_i - \\sum_{i=1}^{n} x_i \\sum_{i=1}^{n} y_i\\]\n\\[\\hat{\\beta} = \\frac{n \\left ( \\sum_{i=1}^{n} x_i y_i \\right ) - \\left ( \\sum_{i=1}^{n} x_i \\right ) \\left ( \\sum_{i=1}^{n} y_i\\right )}{n \\left ( \\sum_{i=1}^{n} x_i^2 \\right ) - \\left ( \\sum_{i=1}^{n} x_i \\right )^2}\\]\nPortanto as estimativas de \\(\\hat{\\alpha}\\) e \\(\\hat{\\beta}\\) pelo método de mínimos quadados são dadas por:\n\\[\\hat{\\alpha} = \\frac{\\sum_{i=1}^{n} y_i - \\hat{\\beta} \\sum_{i=1}^{n} x_i} {n} = \\bar{y} - \\hat{\\beta} \\bar{x}\\] e\n\\[\\hat{\\beta} = \\frac{n \\left ( \\sum_{i=1}^{n} x_i y_i \\right ) - \\left ( \\sum_{i=1}^{n} x_i \\right ) \\left ( \\sum_{i=1}^{n} y_i\\right )}{n \\left ( \\sum_{i=1}^{n} x_i^2 \\right ) - \\left ( \\sum_{i=1}^{n} x_i \\right )^2}\\]\nem que \\(n\\) corresponde a tamanho da amostra.\n\n\n\n\n\n\nObservação:\n\n\n\nPara comprovar que as estimativas encontradas correspondem ao ponto de mínimo da função, deve-se fazer o estudo do sinal do determinante da matriz hessiana e das derivadas parciais de segunda ordem."
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#exemplo-5",
+    "href": "relatorio_html/relatorio_html.html#exemplo-5",
+    "title": "Correlação e Regressão",
+    "section": "Exemplo",
+    "text": "Exemplo\nConsiderando-se o exemplo de altura da árvore (\\(Y\\)) e o diâmetro à altura do peito (\\(X\\)):\n\nTabelaEstimativas dos coeficientesAnálise de RegressãoGráfico de Dispersão\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCall:\nlm(formula = y ~ x, data = dados4)\n\nCoefficients:\n(Intercept)            x  \n     4.5368       0.7053  \n\n\n\n\n\n\n\nCall:\nlm(formula = y ~ x, data = dados4)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-0.9531 -0.6437  0.2097  0.2903  1.5333 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   4.5367     0.6311   7.188 9.35e-05 ***\nx             0.7053     0.0450  15.675 2.74e-07 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.7999 on 8 degrees of freedom\nMultiple R-squared:  0.9685,    Adjusted R-squared:  0.9645 \nF-statistic: 245.7 on 1 and 8 DF,  p-value: 2.738e-07\n\n\n\n\n\n\nCódigo\nwith(dados4,\n     plot(x,y,\n          xlab=\"DAP\",\n          ylab=\"Altura\",\n          pch=16)\n     )\nlines(x,4.5368 + 0.7053*x)\n\n\n\n\n\nGráfico de dispersão das variáveis Altura e DAP .\n\n\n\n\n\n\n\nObtendo as estimativas utilizando as expressões, tem-se:\n\n\n\nEtapas intermediárias para obtenção das estimativas dos coeficientes de regressão linear.\n\n\n\\[\\hat{\\beta} = \\frac{10(1970,51) - (128,5)(136,0)}{10(1967,23) - (128,5)^2} = 0,7053\\]\n\\[\\hat{\\alpha} = \\frac{136,0 - 0,7053(128,5)}{10} = 4,5368\\]\nA equação da reta que descreve a relação entre altura e DAP é:\n\\[\\hat{y}_i = 4,5368 + 0,7053 x_i\\]"
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#análise-de-variância",
+    "href": "relatorio_html/relatorio_html.html#análise-de-variância",
+    "title": "Correlação e Regressão",
+    "section": "Análise de Variância",
+    "text": "Análise de Variância\nA análise de vari6ancia representa o desdobramento da soma de quadrados total (\\(SQ_{Total}\\)) em diversos componentes que podem explicar o fen^omeno em questão.\nNo caso da regressão linear simples, pode-se desdobrar a \\(SQ_{Total}\\) em soma de quadrados da regressão (\\(SQ_{Reg}\\)) e soma de quadrados dos resíduos (\\(SQ_{Res}\\)).\n\\[SQ_{Total} = SQ_{Reg} + SQ_{Res}\\]\n\\[\\sum_{i=1}^{n} (y_i - \\bar{y})^2 = \\sum_{i=1}^{n} (\\hat{y_i} - \\bar{y})^2 + \\sum_{i=1}^{n} (y_i - \\hat{y_i})^2\\]\nPode-se, ent~ao, verificar estatisticamente se as variáveis X e Y apresentam a suposta relação linear por meio da análise de variância, o que equivale a testar a hipótese:\n\n\n\n\n\n\nHipóteses\n\n\n\n\\[y_i = \\alpha + \\beta x_i + \\epsilon_i\\]\n\\[H_0: \\beta = 0\\]\n\\[H_a: \\beta \\neq 0\\]\n\n\nPara isso, devem-se obter as seguintes quantidades:\n\n\n\nAnálise de variância em modelos de regressão.\n\n\n\\[gl_{reg} = 1\\]\n\\[gl_{res} = n-2\\]\n\\[gl_{total} = n-1\\]\n\\[SQ_{T   otal} = \\sum_{i=1}^{n} (y_i - \\bar{y})^2 = \\sum_{i=1}^{n} y_i^2 - \\frac{\\left ( \\sum_{i=1}^{n} y_i \\right )^2}{n}\\]\n\\[SQ_{Reg} = \\sum_{i=1}^{n} (\\hat{y}_i - \\bar{y})^2 = \\frac{\\left ( \\sum_{i=1}^{n} x_i y_i - \\frac{1}{n} \\sum_{i=1}^{n} x_i \\sum_{i=1}^{n} y_i \\right )^2}{\\sum_{i=1}^{n}  x_i^2 - \\frac{1}{n} (\\sum_{i=1}^{n} x_i)^2}\\]\n\\[SQ_{Res} = \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2 = SQ_{Total   } - SQ_{Reg}\\]\n\\[QM_{Reg} = SQ_{Reg} / gl_{reg}\\]\n\\[QM_{Res} = SQ_{Res} / gl_{res}\\]\n\\[F_{calc} = QM_{Reg} / QM_{Res}\\]\n\\[F_{tab} (1;n-2; \\alpha)\\]\nSe \\(F_{calc} &gt; F_{tab}\\), rejeita-se a hipótese nula \\(H_0\\).\nConsiderando o exemplo de altura da árvore (\\(Y\\)) e o diâmetro à altura do peito (\\(X\\)):\n\n\n\nEtapas intermediárias da análise de variância em modelos de regressão.\n\n\npara \\(F_{tab} (1;8;\\alpha = 0,05) = 5,32\\)\n\n\n\nQuadro de análise de variância para um modelo de regressão.\n\n\nComo \\(F_{calc} &gt; F_{tab}\\), rejeita-se a hipótese nula \\(H_0\\), portanto há indícios de que o parâmetro \\(\\beta\\) é importante para explicar o fenômeno estudado.\nUtilizando o software R:\n\nAnova\n\n\n\n\nAnalysis of Variance Table\n\nResponse: y\n          Df  Sum Sq Mean Sq F value    Pr(&gt;F)    \nx          1 157.221  157.22   245.7 2.738e-07 ***\nResiduals  8   5.119    0.64                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\n\nPode-se demonstrar que:\n\\[\\widehat{Var}(\\hat{\\alpha}) = \\frac{1}{n} + \\frac{\\bar{X}^2}{\\sum_{i=1}^{n} x_i^2 - \\frac{(\\sum_{i=1}^{n}x_i)^2}{n}} QM_{Res}\\]\n\\[\\widehat{Var}(\\hat{\\beta}) = \\left ( \\frac{1}{\\sum_{i=1}^{n} x_i^2 - \\frac{(\\sum_{i=1}^{n}x_i)^2}{n}} \\right )QM_{Res}\\]\n\\[\\widehat{Cov}(\\hat{\\alpha}, \\hat{\\beta}) =  - \\frac{\\bar{X}^2}{\\sum_{i=1}^{n} x_i^2 - \\frac{(\\sum_{i=1}^{n}x_i)^2}{n}} QM_{Res}\\]"
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#testes-de-hipóteses-para-o-parâmetro-alpha",
+    "href": "relatorio_html/relatorio_html.html#testes-de-hipóteses-para-o-parâmetro-alpha",
+    "title": "Correlação e Regressão",
+    "section": "Testes de hipóteses para o parâmetro \\(\\alpha\\)",
+    "text": "Testes de hipóteses para o parâmetro \\(\\alpha\\)\n\nPopulação: \\(Y \\sim N(\\mu, \\sigma^2)\\); \\(\\mu = E(Y) = \\alpha + \\beta x\\); \\(\\sigma^2 = QM_{Res}\\)\nHipóteses: \\(\\left\\{\\begin{matrix} H_0: \\alpha = 0 \\; (\\mbox{hipótese nula}) \\\\ H_a: \\alpha &lt;, \\neq, &gt; 0 \\; (\\mbox{hipótese alternativa}) \\end{matrix} \\right.\\)\n\nCalcula-se a estatística do teste:\n\\[t_{calc} = \\frac{\\hat{\\alpha} - \\alpha_0}{\\sqrt{\\widehat{Var}(\\hat{\\alpha})}} = \\frac{\\hat{\\alpha} - \\alpha_0}{\\sqrt{\\left ( \\frac{1}{n} + \\frac{\\bar{X}^2}{\\sum_{i=1}^{n} x_i^2 - \\frac{(\\sum_{i=1}^{n}x_i)^2}{n}} \\right )QM_{Res}}}\\]\ne compara-se com um quantil \\(t_{tab}\\) da distribuição \\(t\\) de Student com \\(n - 2\\) graus de liberdade, que represente o indicado pela hipótese alternativa. Em geral usa-se \\(\\alpha_0 = 0\\)."
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#testes-de-hipóteses-para-o-parâmetro-beta",
+    "href": "relatorio_html/relatorio_html.html#testes-de-hipóteses-para-o-parâmetro-beta",
+    "title": "Correlação e Regressão",
+    "section": "Testes de hipóteses para o parâmetro \\(\\beta\\)",
+    "text": "Testes de hipóteses para o parâmetro \\(\\beta\\)\n\nPopulação: \\(Y \\sim N(\\mu, \\sigma^2)\\); \\(\\mu = E(Y) = \\alpha + \\beta x\\); \\(\\sigma^2 = QM_{Res}\\)\nHipóteses: \\(\\left\\{\\begin{matrix} H_0: \\beta = 0 \\; (\\mbox{hipótese nula}) \\\\ H_a: \\beta &lt;, \\neq, &gt; 0 \\; (\\mbox{hipótese alternativa}) \\end{matrix} \\right.\\)\n\nCalcula-se a estatística do teste:\n\\[t_{calc} = \\frac{\\hat{\\beta} - \\beta_0}{\\sqrt{\\widehat{Var}(\\hat{\\beta})}} = \\frac{\\hat{\\beta} - \\beta_0}{\\sqrt{\\frac{QM_{Res}}{\\sum_{i=1}^{n} x_i^2 - \\frac{(\\sum_{i=1}^{n}x_i)^2}{n}}}}\\]\ne compara-se com um quantil \\(t_{tab}\\) da distribuição \\(t\\) de Student com \\(n - 2\\) graus de liberdade, que represente o indicado pela hipótese alternativa. Em geral usa-se \\(\\beta_0 = 0\\)."
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#verificação-da-qualidade-do-ajuste",
+    "href": "relatorio_html/relatorio_html.html#verificação-da-qualidade-do-ajuste",
+    "title": "Correlação e Regressão",
+    "section": "verificação da qualidade do ajuste",
+    "text": "verificação da qualidade do ajuste\n\n\n\n\n\n\nResíduo\n\n\n\nDiferença entre o valor observado (\\(y_i\\)) e o valor predito (\\(\\hat{y}_i\\)), para um determinado valor \\(x_i\\):\n\\(e_i = y_i - \\hat{y}_i\\).\n\n\nO primeiro resíduo simples é dado por:\n\\[e_1 = 8,1 - (4,5368 + 0,7053 \\; \\mbox{x} \\; 5,9) = 8,1 - 8,7 = -0,6\\]\n\n\n\n\n\n\nModelo bem ajustado\n\n\n\né aquele que apresenta resíduos pequenos.\nResíduos simples \\(\\Rightarrow\\) depende das unidades de medida.\nResíduos padronizados \\(\\Rightarrow z_i = \\frac{e_i}{\\sqrt{\\sum_{i=1}^{n} e_i^2 / (n-2)}} = \\frac{e_i}{\\sqrt{QM_{Res}}}\\)\n\n\nNa prática: erro pequeno \\(\\Rightarrow\\) resíduo padronizado entre \\(-2 \\; \\mbox{e} \\; 2\\)."
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#exemplo-6",
+    "href": "relatorio_html/relatorio_html.html#exemplo-6",
+    "title": "Correlação e Regressão",
+    "section": "Exemplo",
+    "text": "Exemplo\nConsiderando-se o exemplo de altura da árvore (\\(Y\\)) e o diâmetro à altura do peito (\\(X\\)):\n\nGráfico do ajusteAnalise dos resíduosFunção em R"
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#coeficiente-de-determinação-r2",
+    "href": "relatorio_html/relatorio_html.html#coeficiente-de-determinação-r2",
+    "title": "Correlação e Regressão",
+    "section": "Coeficiente de determinação \\(R^2\\)",
+    "text": "Coeficiente de determinação \\(R^2\\)\nÉ um coeficiente que indica quanto da variabilidade na variável dependente \\(Y\\) está sendo “explicada” pela variável \\(X\\).\n\\[R^2 = \\frac{SQ_{Reg}}{SQ_{Total}} = \\frac{\\sum_{i=1}^{n} (\\hat{y}_i - \\bar{y})^2}{\\sum_{i=1}^{n} (y_i - \\bar{y})^2}\\]\nO valor de \\(R^2\\) varia no intervalo de \\(0\\) a \\(1\\). Valores próximos de \\(1\\) indicam que o modelo proposte é adequado para descrever o fenômeno."
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#exemplo-7",
+    "href": "relatorio_html/relatorio_html.html#exemplo-7",
+    "title": "Correlação e Regressão",
+    "section": "Exemplo",
+    "text": "Exemplo\nConsiderando-se o exemplo de altura da árvore (\\(Y\\)) e o diâmetro à altura do peito (\\(X\\)):\n\n\n\nEtapas intermediárias da análise de variância em modelos de regressão.\n\n\n\\[R^2 = \\frac{\\sum_{i=1}^{n} (\\hat{y}_i - \\bar{y})^2}{\\sum_{i=1}^{n} (y_i - \\bar{y})^2} = \\frac{(8,7 - 13,6)^2 + \\dots + (20,8 - 13,6)^2}{(8,1 - 13,6)^2 + \\dots + (20,1 - 13,8)^2} = \\frac{157,21}{162,33} = 0,97\\]"
+  },
+  {
+    "objectID": "relatorio_pdf/relatorio_pdf.html",
+    "href": "relatorio_pdf/relatorio_pdf.html",
+    "title": "Meu relatório em Quarto",
+    "section": "",
+    "text": "Este relatório foi emitido em 2022. Os resultados foram iguais a 0.3485754, considerando uma amostra com distribuição normal. O valor de \\(x\\) encontrado foi igual a 2. A fórmula utilizada foi \\(\\alpha = 1+1\\).\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet dictum sit amet justo donec. Est ultricies integer quis auctor elit. Elit scelerisque mauris pellentesque pulvinar pellentesque. Vel turpis nunc eget lorem dolor sed. Aliquet eget sit amet tellus cras adipiscing enim. Nisl nunc mi ipsum faucibus vitae. Justo nec ultrices dui sapien eget mi proin sed libero. Ipsum consequat nisl vel pretium lectus. Suspendisse sed nisi lacus sed viverra. Justo laoreet sit amet cursus sit amet. Cursus metus aliquam eleifend mi in nulla. Aliquam ut porttitor leo a. Tortor dignissim convallis aenean et tortor at risus. Commodo sed egestas egestas fringilla phasellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet dictum sit amet justo donec. Est ultricies integer quis auctor elit. Elit scelerisque mauris pellentesque pulvinar pellentesque. Vel turpis nunc eget lorem dolor sed. Aliquet eget sit amet tellus cras adipiscing enim. Nisl nunc mi ipsum faucibus vitae. Justo nec ultrices dui sapien eget mi proin sed libero. Ipsum consequat nisl vel pretium lectus. Suspendisse sed nisi lacus sed viverra. Justo laoreet sit amet cursus sit amet. Cursus metus aliquam eleifend mi in nulla. Aliquam ut porttitor leo a. Tortor dignissim convallis aenean et tortor at risus. Commodo sed egestas egestas fringilla phasellus."
+  },
+  {
+    "objectID": "relatorio_pdf/relatorio_pdf.html#objetivo-geral",
+    "href": "relatorio_pdf/relatorio_pdf.html#objetivo-geral",
+    "title": "Meu relatório em Quarto",
+    "section": "Objetivo Geral",
+    "text": "Objetivo Geral\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet dictum sit amet justo donec. Est ultricies integer quis auctor elit. Elit scelerisque mauris pellentesque pulvinar pellentesque. Vel turpis nunc eget lorem dolor sed. Aliquet eget sit amet tellus cras adipiscing enim. Nisl nunc mi ipsum faucibus vitae. Justo nec ultrices dui sapien eget mi proin sed libero. Ipsum consequat nisl vel pretium lectus. Suspendisse sed nisi lacus sed viverra. Justo laoreet sit amet cursus sit amet. Cursus metus aliquam eleifend mi in nulla. Aliquam ut porttitor leo a. Tortor dignissim convallis aenean et tortor at risus. Commodo sed egestas egestas fringilla phasellus."
+  },
+  {
+    "objectID": "relatorio_pdf/relatorio_pdf.html#objetivos-específicos",
+    "href": "relatorio_pdf/relatorio_pdf.html#objetivos-específicos",
+    "title": "Meu relatório em Quarto",
+    "section": "Objetivos específicos",
+    "text": "Objetivos específicos\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet dictum sit amet justo donec. Est ultricies integer quis auctor elit. Elit scelerisque mauris pellentesque pulvinar pellentesque. Vel turpis nunc eget lorem dolor sed. Aliquet eget sit amet tellus cras adipiscing enim. Nisl nunc mi ipsum faucibus vitae. Justo nec ultrices dui sapien eget mi proin sed libero. Ipsum consequat nisl vel pretium lectus. Suspendisse sed nisi lacus sed viverra. Justo laoreet sit amet cursus sit amet. Cursus metus aliquam eleifend mi in nulla. Aliquam ut porttitor leo a. Tortor dignissim convallis aenean et tortor at risus. Commodo sed egestas egestas fringilla phasellus."
+  },
+  {
+    "objectID": "relatorio_pdf/relatorio_pdf.html#footnotes",
+    "href": "relatorio_pdf/relatorio_pdf.html#footnotes",
+    "title": "Meu relatório em Quarto",
+    "section": "Notas de rodapé",
+    "text": "Notas de rodapé\n\n\nSaiba mais em: Quarto.org e configuração do documento em pdf, acesse o guia do usuário Pandoc.↩︎"
+  },
+  {
+    "objectID": "relatorio_do_zero/meu_primeiro_relatorio.html",
+    "href": "relatorio_do_zero/meu_primeiro_relatorio.html",
+    "title": "Relatório do zero",
+    "section": "",
+    "text": "Aviso\n\n\n\nSeu texto aqui!\n\n\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org.\n\n1 + 1\n\n[1] 2\n\n\nNo Rmarkdown\n\n2 * 2\n\n[1] 4\n\n\nNo Quarto\n\n2 * 2\n\n[1] 4\n\n\n\n\n\n\nMeu link"
+  },
+  {
+    "objectID": "relatorio_do_zero/meu_primeiro_relatorio.html#quarto-2",
+    "href": "relatorio_do_zero/meu_primeiro_relatorio.html#quarto-2",
+    "title": "Relatório do zero",
+    "section": "",
+    "text": "Aviso\n\n\n\nSeu texto aqui!\n\n\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org.\n\n1 + 1\n\n[1] 2\n\n\nNo Rmarkdown\n\n2 * 2\n\n[1] 4\n\n\nNo Quarto\n\n2 * 2\n\n[1] 4\n\n\n\n\n\n\nMeu link"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Página Inicial",
+    "section": "",
+    "text": "Bem-vindo ao site de análise estatística\nEste site apresenta uma análise de correlação e regressão com R.\nAcesse no menu acima ou clique aqui."
+  }
+]
