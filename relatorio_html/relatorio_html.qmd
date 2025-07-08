@@ -1,0 +1,973 @@
+---
+title: "Correlação e Regressão" # Título do relatório
+subtitle: "**Eng. Florestal - Estatística Experimental**"
+author: "Prof. Dr. João Thiago" # Autor(a)
+lang: pt # Linguagem em português
+date: "`r format(Sys.Date())`" # Data do relatório
+date-format: short # Formato de data curto: dd/MM/yyyy 
+toc: true # Adiciona um índice no relatório
+format: 
+    html: 
+      css: ["custom.css"] # Customização com css
+      embed-resources: true
+      code-fold: false # code-fold: true para "ocultar" o bloco de códigos
+      code-tools: true  #code-tools: true para ativar ferramentas de interação com os códigos
+  #    number-sections: true # Número de seções/subseções
+      theme: 
+        light: cosmo
+        dark: superhero # Sugestão: superhero/vapor Mudar o tema do relatório aqui
+title-block-banner: "#228B22" # Pode ser 'true', uma cor ou imagem; verde floresta (Forestgreen)
+code-annotations: hover # Para anotações em códigos
+execute:
+  warning: false
+  message: false
+reference-location: margin
+citation-location: margin
+bibliography: references.bib
+params:
+  dataset: "iris" # Parâmetros aplicável em todo o documento
+---
+
+```{r}
+#| echo: false
+
+# Script para logo na página
+htmltools::img(
+  src = knitr::image_uri(file.path("img", "Brasao.jpg")),
+  alt = 'Brasao',
+  style = 'position:absolute; top:0; left:20px; padding:30px; width:13%;'
+)
+```
+
+# Correlação
+
+::: callout-important
+# Objetivo
+
+Análise do comportamento conjunto entre duas variáveis **quantitativas**.
+:::
+
+O interesse está em se estudar o relacionamento entre as variáveis $X$ e $Y$, isto é, uma *medida* de covariabilidade entre elas. Assim, análise de correlação difere da análise de regressão em dois pontos básicos [@demetrio2010]:
+
+i.  Não existe idéia de qualquer relação de dependência entre as variáveis. A correlação é considerada como uma medida de influência mútua ou conjunta entre variáveis, ou seja, não se está preocupado em verificar quem influencia ou quem é influenciado.
+
+ii. Na análise de correlação todas as variáveis são, geralemente, aleatórias e a amostra é considerada proveniente de uma distribuição conjunta de variáveis. A distribuição normal bidimensional, é geralmente, suposta para a variável bidimensional $(X,Y)$.
+
+**Exemplos**
+
+-   relação entre altura da árvore e diâmetro à altura do peito (DAP);
+
+-   relação entre doses de de nitrogênio e produção de determinada cultura;
+
+-   relação entre porcentagem de nucleotídeos totais e a temperatura;
+
+-   ...
+
+::: callout-warning
+# Diagrama de Dispersão
+
+Representação gráfica dos pares de valores em um sistema cartesiano.
+:::
+
+O comportamento conjunto de duas variáveis **quantitivas** pode ser observado por meio do gráfico de dispersão.
+
+```{r}
+#| echo: false
+#| warning: false
+#| error: false
+id <- factor(seq(1:20))
+comp <- c(104, 107, 103, 105, 100,
+          104, 108, 91, 102, 99,
+          98, 95, 92, 104, 94,
+          99, 98, 98, 104, 100)
+peso <- c(23.5, 22.7, 21.1, 21.5, 17.0,
+          28.5, 19.0, 14.5, 19.0, 19.5,
+          15.0, 14.9, 15.1, 22.2, 13.6,
+          16.1, 18.0, 16.0, 20.0, 18.3)
+dados <- data.frame(id,comp,peso)
+colnames(dados) <- c("Nº", "Comprimento", "Peso")
+```
+
+::: panel-tabset
+## Tabela
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+dados |> 
+  reactable::reactable(
+  searchable = TRUE, # Inserindo uma busca na tabela
+  outlined = TRUE # Linhas na tabela
+  ) 
+```
+
+## Gráfico de Dispersão
+
+```{r}
+#| echo: true
+#| error: false
+#| warning: false
+#| fig-cap: "Comprimento (cm) e peso (kg) em cães."
+#| code-fold: true
+
+with(dados,
+     plot(comp,peso,
+          xlab="Comprimento (cm)",
+          ylab="Peso (kg)",
+          pch=16)
+     )
+```
+:::
+
+## Exemplo
+
+Os dados a seguir são referentes à altura de árvore ($Y$) e seu dimâmero à altura do peito ($X$).
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+
+id <- factor(seq(1:10))
+altura <- c(8.1, 9.2, 8.7, 12.7, 13.2,
+            12.4, 15.7, 17.0, 18.9, 20.1)
+dap <- c(5.9, 6.3, 7.0, 9.4, 12.0, 12.5,
+         15.4, 17.0, 20.0, 23.0)
+data <- data.frame(id,altura,dap)
+colnames(data) <- c("Nº", "Altura", "DAP")
+```
+
+::: panel-tabset
+## Tabela
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+data |> 
+  reactable::reactable(
+  searchable = TRUE, # Inserindo uma busca na tabela
+  outlined = TRUE # Linhas na tabela
+  ) 
+```
+
+## Gráfico de Dispersão
+
+```{r}
+#| echo: true
+#| error: false
+#| warning: false
+#| fig-cap: "Altura (m) e diâmetro à altura do peito (cm) de árvores (Dados simulados)."
+#| code-fold: true
+
+with(data,
+     plot(dap,altura,
+          xlab="DAP (cm)",
+          ylab="Altura (cm)",
+          pch=16)
+     )
+```
+:::
+
+## Exemplo
+
+Os dados a seguir são referentes ao espaçamento das linhas na cultura de soja ($X$) e à fração da radiação solar extinta pela planta ($Y$) (Andrade e Ogliari, 2007).
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+
+id <- factor(seq(1:10))
+radiacao <- c(0.2, 0.3, 0.4, 0.5, 0.6,
+             0.7, 0.8, 0.9, 1.0, 1.1)
+espacamento <- c(0.53, 0.51, 0.48, 0.45, 0.44,
+                 0.41, 0.40, 0.39, 0.36, 0.30)
+dados2 <- data.frame(id,radiacao,espacamento)
+colnames(dados2) <- c("Nº", "Radiação", "Espaçamento")
+```
+
+::: panel-tabset
+## Tabela
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+dados2 |> 
+  reactable::reactable(
+  searchable = TRUE, # Inserindo uma busca na tabela
+  outlined = TRUE # Linhas na tabela
+  ) 
+```
+
+## Gráfico de Dispersão
+
+```{r}
+#| echo: true
+#| error: false
+#| warning: false
+#| fig-cap: "Gráfico de dispersão das variáveis radiação e espaçamento (Andrade e Ogliari, 2007)."
+#| code-fold: true
+
+with(dados2,
+     plot(radiacao,espacamento,
+          xlab="Espaçamento (m)",
+          ylab="Radiação (%)",
+          pch=16)
+     )
+```
+:::
+
+## Exemplo
+
+Os dados a seguir são referentes à salinidade (g/L) e à temperatura na região III da Lagoa da Conceição, Florianópolis-SC (Andrade e Ogliari, 2007).
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+
+estacao <- factor(c("23", "23A", "24", "25", 
+                    "26", "27", "27A", "28"))
+temperatura <- c(24.0, 23.0, 23.0, 26.0,
+                 25.5, 25.0, 24.3, 23.0)
+salinidade <- c(3.85, 9.61, 2.26, 2.06,
+                2.89, 9.61, 10.58, 11.40)
+data2 <- data.frame(estacao,temperatura,salinidade)
+colnames(data2) <- c("Estação", "Temperatura", "Salinidade")
+```
+
+::: panel-tabset
+## Tabela
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+data2 |> 
+  reactable::reactable(
+  searchable = TRUE, # Inserindo uma busca na tabela
+  outlined = TRUE # Linhas na tabela
+  ) 
+```
+
+## Gráfico de Dispersão
+
+```{r}
+#| echo: true
+#| error: false
+#| warning: false
+#| fig-cap: "Gráfico de dispersão das variáveis salinidade e temperatura (Andrade e Ogliari, 2007)."
+#| code-fold: true
+
+with(data2,
+     plot(salinidade,temperatura,
+          xlab="Salinidade (g/L)",
+          ylab="Temperatura (˚C)",
+          pch=16)
+     )
+```
+:::
+
+::: callout-warning
+# Coeficiente de Correlação Linear de Pearson
+
+Quantifica a correlação entre duas variáveis quantitativas.
+
+$$ \mathbf{-1 \le r \le 1} $$
+:::
+
+![Diferentes medidas de correlação entre duas variáveis quantitativas.](img/cor_reg.png){fig-align="center" width="600"}
+
+# Coeficiente de Correlação Linear de Pearson
+
+Forma 1:
+
+$$  r = Corr = \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}  $$
+
+$$ r = \frac{n \left ( \sum xy \right ) - \left ( \sum x \sum y\right )}{\sqrt{n \left ( \sum x^2 \right ) - \left ( \sum x \right )^2} \sqrt{n \left ( \sum y^2 \right ) - \left ( \sum y \right )^2}}$$
+
+Forma 2:
+
+$$  r = \frac{\sum^n_{i=1} \left [ (x_i - \bar{x})(y_i - \bar{y})   \right  ]}{\sqrt{\sum^n_{i=1}(x_i - \bar{x})^2}\sqrt{\sum^n_{i=1}(y_i - \bar{y})^2}}  $$
+
+## Exemplo
+
+Considerando-se o exemplo de altura da árvore ($Y$) e o diâmetro à altura do peito ($X$), calcular o valor do coeficiente de correlação de Pearson.
+
+::: panel-tabset
+## Tabela
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+
+id <- factor(seq(1:10))
+y <- c(8.1, 9.2, 8.7, 12.7, 13.2,
+            12.4, 15.7, 17.0, 18.9, 20.1)
+x <- c(5.9, 6.3, 7.0, 9.4, 12.0, 12.5,
+         15.4, 17.0, 20.0, 23.0)
+
+data_new <- data.frame(id,x,y)
+data_new$x2 <- (data_new$x)^2
+data_new$y2 <- (data_new$y)^2
+data_new$xy <- (data_new$x)*(data_new$y)
+
+totais <- c(sum(data_new$x),sum(data_new$y),
+            sum(data_new$x2),sum(data_new$y2),
+            sum(data_new$xy))
+
+data_new <- rbind(data_new,totais)
+
+colnames(data_new) <- c("Obs","x","y",
+                        "x2","y2","xy")
+
+data_new |> 
+  reactable::reactable(
+  searchable = TRUE, # Inserindo uma busca na tabela
+  outlined = TRUE, # Linhas na tabela
+  defaultPageSize = 11, # Número de linhas por página
+  highlight = TRUE, # Destaca a linha ao passar o mouse
+  ) 
+```
+
+## Correlação de Pearson
+
+```{r}
+#| echo: true
+#| error: false
+#| warning: false
+#| fig-cap: "Análise de correlação de Pearson utilizando função do aplicativo R."
+#| code-fold: true
+
+with(data_new,
+     cor.test(x,y))
+```
+:::
+
+Aplicação
+
+$$ r = \frac{10(1970,51) - (128,5)(136,0)}{\sqrt{10(1967,23)-(128,5)^2}\sqrt{10(2011,94)-(136,0)^2}}$$
+
+$$ r = \frac{2229,1}{2264,956}  = 0,982$$
+
+## Exemplo
+
+Sejam duas variáveis $X$ e $Y$ quaisquer.
+
+::: panel-tabset
+## Tabela
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+
+id <- factor(seq(1:8))
+x <- c(12,10,11,15,13,16,9,11)
+y <- c(98,87,90,111,102,118,86,98)
+dx <- x - mean(x)
+dy <- y - mean(y)
+dxdy <- dx * dy
+dx2 <- dx^2
+dy2 <- dy^2
+
+dados3 <- data.frame(id,x,y,dx,dy,
+                     dxdy,dx2,dy2)
+
+dados3 |> 
+  reactable::reactable(
+  searchable = TRUE, # Inserindo uma busca na tabela
+  outlined = TRUE, # Linhas na tabela
+  # defaultPageSize = 12, # Número de linhas por página
+  highlight = TRUE, # Destaca a linha ao passar o mouse
+  ) 
+```
+
+## Descritiva
+
+```{r}
+#| echo: false
+#| warning: false
+#| error: false
+
+medias <- colMeans(dados3[,-1])
+totais <- colSums(dados3[,-1])
+desc <- data.frame(medias,totais)
+
+desc|> 
+  reactable::reactable(
+  searchable = TRUE, # Inserindo uma busca na tabela
+  outlined = TRUE, # Linhas na tabela
+  # defaultPageSize = 12, # Número de linhas por página
+  highlight = TRUE, # Destaca a linha ao passar o mouse
+  ) 
+```
+
+## Correlação de Pearson
+
+```{r}
+#| echo: true
+#| error: false
+#| warning: false
+#| fig-cap: "Análise de correlação de Pearson utilizando função do aplicativo R."
+#| code-fold: true
+
+with(dados3,
+     cor.test(x,y))
+```
+:::
+
+$$  r = \frac{188,25}{\sqrt{(40,88)}\sqrt{(909,50)}} = 0,976  $$
+
+## Considerações sobre a correlação
+
+-   A força de uma associação pode ser medida por um **coeficiente de correlação**.
+
+-   O *coeficiente de correlação de Pearson* é uma medida da intensidade de associação linear existente entre duas variáveis quantitativas.
+
+-   Também é conhecido como *coeficiente de correlação de Pearso*n, pois sua fórmula de cálculo foi proposta por Karl Pearson em 1896.
+
+-   O coeficiente de correlação de Pearson é denominado por $\rho$ e sua estimativa por $r$.
+
+-   A correlação não pode ser maior do que $1$ ou menor do que $-1$.
+
+-   Uma correlação próxima de zero indica que as duas variáveis não estão correlacionadas.
+
+-   Uma correlação positiva indica que duas variáveis movem-se juntas, a relação é forte quanto mais próximo é o valor de $1$.
+
+-   Uma correlação negativa indica que duas variáveis movem-se em direções opostas, que a relação também fica forte quanto mais próxima do valor de $-1$.
+
+-   O coeficiente de correlação é adimensional, logo não é afetado pelas unidades de medida das variáveis $X$ e $Y$.
+
+-   O sinal **positivo** indica que as variáveis são **diretamente proporcionais**, correlação direta, enquanto que o sinal **negativo** indica que a relação entre as variáveis é **inversamente proporcional**, correlação inversa.
+
+# Teste de Hipótese sobre a correlação
+
+-   Quando se calcula o coeficiente r em uma amostra, é necessário ter em mente que se está, na realidade, estimando a associação verdadeira entre $X$ e $Y$ existente na população.
+
+-   A correlação na população é designada por $\rho$.
+
+-   Para avaliar a significância do coeficiente de correlação, geralmente testa-se a hipótes nula $H_0: \rho = 0$.
+
+::: callout-note
+## Estatística do teste
+
+$$ t = r \sqrt{\frac{n-2}{1-r^2}} $$ $t$ tem distribuição $t$ de Student com $n − 2$ graus de liberdade (sob certas suposições).
+:::
+
+**Suposições** para realização do teste de hipótese:
+
+-   tanto a variável $X$ quanto a variável $Y$ tem distribuição normal.
+
+-   a relação entre $X$ e $Y$ é linear.
+
+## Distribuição Normal Bidimensional
+
+$$f_{X_1 X_2}(x_1 x_2) = \frac{1}{2 \pi \rho_{X_1} \rho_{X_2} (1 - \rho^2)^{1/2}} \mbox{exp} \left [ - \frac{1}{2(1 - \rho^2)} \left ( \frac{X_1 - \mu_{X_1}}{\rho_{X_1}} \right )^2 \\
+- 2 \rho \left ( \frac{X_1 - \mu_{X_1}}{\rho_{X_1}} \right ) \left ( \frac{X_2 - \mu_{X_2}}{\rho_{X_2}} \right ) + \left ( \frac{X_2 - \mu_{X_2}}{\rho_{X_2}} \right )^2 \right ]$$ 
+
+Fonte: @demetrio2010.
+
+::: panel-tabset
+## Tabela
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+
+individuo <- factor(seq(1:25))
+idade <- c(35,40,41,44,45,48,50,50,50,52,54,55,55,
+           55,57,58,59,60,60,61,63,65,67,71,77)
+pio <- c(15,17,16,18,15,19,19,18,17,16,19,18,21,
+         20,19,20,19,23,19,22,23,24,23,24,22)
+
+data3 <- data.frame(individuo,idade,pio)
+colnames(data3) <- c("Indivíduo","Idade","PIO")
+
+data3 |> 
+  reactable::reactable(
+  searchable = TRUE, # Inserindo uma busca na tabela
+  outlined = TRUE, # Linhas na tabela
+  # defaultPageSize = 12, # Número de linhas por página
+  highlight = TRUE, # Destaca a linha ao passar o mouse
+  ) 
+```
+
+## Gráfico de dispersão
+
+```{r}
+#| echo: false
+#| warning: false
+#| error: false
+
+with(data3,
+     plot(pio,idade,
+          xlab="Idade",
+          ylab="PIO",
+          pch=16)
+     )
+```
+
+## Correlação de Pearson
+
+```{r}
+#| echo: true
+#| error: false
+#| warning: false
+#| fig-cap: "Análise de correlação de Pearson utilizando função do aplicativo R."
+#| code-fold: true
+
+with(data3,
+     cor.test(idade,pio)
+     )
+
+qt(0.05/2, 23, lower.tail = FALSE) # t_tabelado
+
+pt(7.5718, 23, lower.tail = FALSE) # p_valor
+```
+:::
+
+-   No exemplo, ao nível de $5\%$ de significância, $t_{0,05;23} = 2,069$.
+
+$$ t_{calc} = 0,8448 \sqrt{\frac{25-2}{1-0,8448^2}} = 7,5718 \gt 2,069 $$
+
+-   ao nível $\alpha = 5\%$ há evidências para rejeitarmos $H_0$ e aceitar que $\rho$ é diferente de zero.
+
+-   uma vez determinada a existência de correlação na população, pode-se avaliar qualitativamente quanto à intensidade:
+
+![Medida de intesidade da correlação linear da Pearson.](img/correlacao.png){fig-align="center" width="400"}
+
+## Correlação Espúria
+
+-   É comumente encontrada uma forte relação positiva linear entre o número de médicos em uma cidade eo número de mortes por ano nessa cidade!
+
+-   À primeira vista, podemos ser tentados a concluir que ter mais médicos conduz a mais mortes. Assim, se reduzissemos o número de médicos, esperaríamos menos mortes.
+
+-   Podemos calcular correlações para qualquer par de variáveis, mas sempre devemos ter **cuidado** ao assumir que uma **causa** variação na outra.
+
+-   Por isso, correlação não implica **causalidade**.
+
+# Regressão Linear
+
+A teoria de regressão teve origem no século XIX com Sir Francis Galton, que publicou um artigo no qual estudou a relação entre altura dos pais e dos filhos ($X_i \; e \; Y_i$), tentou explicar por que pais de alta estatura tinham filhos com estatura em média mais baixa do que a deles e pais de baixa estatura tinham filhos em média mais altos.
+
+Notou que se o pai fosse muito alto ou muito baixo, o filho teria uma altura tendendo à média. Por isso, ele chamou de regressão, ou seja, existe uma tendência de os dados regredirem à média.
+
+::: callout-important
+# Regressão
+
+O estudo da regressão aplica-se àquelas situações em que há razões para supor uma relação de causa-efeito entre duas variáveis quantitativas e se deseja expressar matematicamente essa relação.
+:::
+
+::: callout-important
+# Objetivos
+
+-   Avaliar uma possível associação de $Y$ em relação a $x$.
+-   Expressar matematicamente esta relação por meio de uma equação.
+:::
+
+Muitas são as relações de causa e efeito que podem ser resumidas por linhas retas, evitando-se, assim, o uso de tabelas de dados para mostrar a relação.
+
+A análise de regressão linear simples é um procedimento que fornece equações de linhas retas (por isso, o termo "linear" ), que descrevem fenômenos em que há uma variável independente apenas (por isso, "simples" ).
+
+::: callout-note
+# Variáveis
+
+$X \Rightarrow $ Variável **independente** 
+
+$Y \Rightarrow $ Variável **dependente**
+:::
+
+::: callout-note
+# Modelo Matemático
+
+$$ Y = \alpha + \beta x $$
+
+:::
+
+em que $\alpha$ representa o intercepto e $\beta$ o coeficiente angular.
+
+**Interpretação prática do parâmetro $\beta$**: o quanto varia a resposta $y$ para um acréscimo de uma unidade na variável $x$.
+
+
+## Ajuste de uma reta
+
+::: callout-note
+# Modelo estatístico
+
+$$ Y = \alpha + \beta x + \epsilon $$
+:::
+
+::: callout-note
+# Reta ajustada
+
+$$\hat{Y} = \hat{\alpha} + \hat{\beta}x$$
+ou
+
+$$\hat{Y} = a + bx$$
+:::
+
+em que $\hat{\alpha}$ (ou $a$) e $\hat{\beta}$ (ou $b$) são as **estimativas** dos parâmetros $\alpha$ e $\beta$.
+
+### Estimativas pelo método dos mínimos quadrados 
+
+$$Y_i = \alpha + \beta x_i + \epsilon_i$$
+Isolando-se $\epsilon-i$ tem-se:
+
+$$\epsilon_i = Y_i - (\alpha + \beta x_i)$$
+
+Para obter a reta com menor erro (resíduo) possível em relação ao conjunto de dados, devemos minimizar a **soma de quadrados dos erros (resíduos)**: 
+
+$$Q = \sum_{i=1^{n}} \epsilon_i^2 = \sum_{i=1^{n}} \left [ y_i - (\alpha + \beta x_i) \right ]^2 = \sum_{i=1^{n}} (y_i - \alpha - \beta x_i)^2$$
+
+$\frac{\partial Q}{\partial \alpha} = 0 \rightarrow 2 \sum_{i=1^{n}} (y_i - \hat{\alpha} - \hat{\beta x_i})(-1) = 0$            $(I)$
+
+$\frac{\partial Q}{\partial \beta} = 0 \rightarrow 2 \sum_{i=1^{n}} (y_i - \hat{\alpha} - \hat{\beta x_i})(-x_i) = 0$          $(II)$
+
+Isolando $\hat{\alpha}$ em $(I)$, tem-se:
+
+$$\sum_{i=1}^{n} (y_i - \hat{\alpha} - \hat{\beta x_i}) = 0 = \sum_{i=1}^{n} y_i - n\hat{\alpha} - \hat{\beta} \sum_{i=1}^{n} x_i = 0$$
+
+$$\sum_{i=1}^{n} y_i - \hat{\beta} \sum_{i=1}^{n} x_i = n\hat{\alpha}$$
+
+$$\hat{\alpha} = \frac{\sum_{i=1}^{n} y_i}{n} - \hat{\beta} \frac{ \sum_{i=1}^{n} x_i}{n}$$ 
+
+$$\hat{\alpha} = \bar{y} - \hat{\beta} \bar{x}$$
+
+Substituindo $(I)$ em $(II)$, tem-se:
+
+$$\sum_{i=1}^{n} x_i \left (y_i - (\bar{y} - \hat{\beta} \bar{x}) - \hat{\beta} x_i \right ) = 0$$
+
+$$\sum_{i=1}^{n} x_i y_i - \sum_{i=1}^{n} x_i \bar{y} + \hat{\beta} \sum_{i=1}^{n} x_i \bar{x} - \hat{\beta} \sum_{i=1}^{n} x_i^2 = 0$$
+
+$$\sum_{i=1}^{n} x_i y_i - \sum_{i=1}^{n} x_i \frac{\sum_{i=1}^{n} y_i}{n} = - \hat{\beta} \sum_{i=1}^{n} x_i \frac{\sum_{i=1}^{n} x_i}{n} + \hat{\beta} \sum_{i=1}^{n} x_i^2$$
+
+$$\hat{\beta} \left ( \sum_{i=1}^{n} x_i^2 - \frac{(\sum_{i=1}^{n} x_i)^2}{n}\right ) = \sum_{i=1}^{n} x_i y_i - \frac{\sum_{i=1}^{n} x_i \sum_{i=1}^{n} y_i}{n}$$
+
+$$\hat{\beta} \left ( n \sum_{i=1}^{n} x_i^2 - (\sum_{i=1}^{n} x_i)^2 \right ) = n \sum_{i=1}^{n} x_i y_i - \sum_{i=1}^{n} x_i \sum_{i=1}^{n} y_i$$
+
+$$\hat{\beta} = \frac{n \left ( \sum_{i=1}^{n} x_i y_i \right ) - \left ( \sum_{i=1}^{n} x_i \right ) \left ( \sum_{i=1}^{n} y_i\right )}{n \left ( \sum_{i=1}^{n} x_i^2 \right ) - \left ( \sum_{i=1}^{n} x_i \right )^2}$$
+
+Portanto as estimativas de $\hat{\alpha}$ e $\hat{\beta}$ pelo método de mínimos quadados são dadas por:
+
+
+$$\hat{\alpha} = \frac{\sum_{i=1}^{n} y_i - \hat{\beta} \sum_{i=1}^{n} x_i} {n} = \bar{y} - \hat{\beta} \bar{x}$$
+e
+
+$$\hat{\beta} = \frac{n \left ( \sum_{i=1}^{n} x_i y_i \right ) - \left ( \sum_{i=1}^{n} x_i \right ) \left ( \sum_{i=1}^{n} y_i\right )}{n \left ( \sum_{i=1}^{n} x_i^2 \right ) - \left ( \sum_{i=1}^{n} x_i \right )^2}$$
+
+em que $n$ corresponde a tamanho da amostra.
+
+:::callout-important
+# Observação:
+
+Para comprovar que as estimativas encontradas correspondem ao ponto de mínimo da função, deve-se fazer o estudo do sinal do determinante da matriz hessiana e das derivadas parciais de segunda ordem.
+:::
+
+## Exemplo
+
+Considerando-se o exemplo de altura da árvore ($Y$) e o diâmetro à altura do peito ($X$):
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+
+Observacao <- seq(1:10)
+x <- c(5.9,6.3,7.0,9.4,12.0,
+       12.5,15.4,17.0,20.0,23.0)
+y <- c(8.1,9.2,8.7,12.7,13.2,
+       12.4,15.7,17.0,18.9,20.1)
+x2 <- x^2
+y2 <- y^2
+xy <- x*y
+
+dados4 <- data.frame(Observacao,x,y,x2,y2,xy)
+colnames(dados4) <- c("Observação", "x", "y", "x^2", "y^2", "xy")
+```
+
+::: panel-tabset
+## Tabela
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+dados4 |> 
+  reactable::reactable(
+  searchable = TRUE, # Inserindo uma busca na tabela
+  outlined = TRUE # Linhas na tabela
+  ) 
+```
+
+## Estimativas dos coeficientes
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+#| code-fold: true
+
+mod <- lm(y~x,
+          data=dados4)
+print(mod)
+```
+
+
+## Análise de Regressão
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+#| code-fold: true
+
+summary(mod)
+```
+
+
+## Gráfico de Dispersão
+
+```{r}
+#| echo: true
+#| error: false
+#| warning: false
+#| fig-cap: "Gráfico de dispersão das variáveis Altura e DAP ."
+#| code-fold: true
+
+with(dados4,
+     plot(x,y,
+          xlab="DAP",
+          ylab="Altura",
+          pch=16)
+     )
+lines(x,4.5368 + 0.7053*x)
+```
+:::
+
+Obtendo as estimativas utilizando as expressões, tem-se:
+
+![Etapas intermediárias para obtenção das estimativas dos coeficientes de regressão linear.](img/regressao01.png){fig-align="center" width="600"}
+
+$$\hat{\beta} = \frac{10(1970,51) - (128,5)(136,0)}{10(1967,23) - (128,5)^2} = 0,7053$$
+
+$$\hat{\alpha} = \frac{136,0 - 0,7053(128,5)}{10} = 4,5368$$
+
+A equação da reta que descreve a relação entre altura e DAP é:
+
+$$\hat{y}_i = 4,5368 + 0,7053 x_i$$
+
+## Análise de Variância
+
+A análise de vari6ancia representa o desdobramento da soma de quadrados total ($SQ_{Total}$) em diversos componentes que podem explicar o fen^omeno em questão.
+
+No caso da regressão linear simples, pode-se desdobrar a $SQ_{Total}$ em soma de quadrados da regressão ($SQ_{Reg}$) e soma de quadrados dos resíduos ($SQ_{Res}$).
+
+$$SQ_{Total} = SQ_{Reg} + SQ_{Res}$$
+
+$$\sum_{i=1}^{n} (y_i - \bar{y})^2 = \sum_{i=1}^{n} (\hat{y_i} - \bar{y})^2 + \sum_{i=1}^{n} (y_i - \hat{y_i})^2$$
+
+Pode-se, ent~ao, verificar estatisticamente se as variáveis X e Y apresentam a suposta relação linear por meio da análise de variância, o que equivale a testar a hipótese:
+
+:::callout-note
+# Hipóteses
+
+$$y_i = \alpha + \beta x_i + \epsilon_i$$
+
+$$H_0: \beta = 0$$
+
+$$H_a: \beta \neq 0$$
+:::
+
+Para isso, devem-se obter as seguintes quantidades:
+
+![Análise de variância em modelos de regressão.](img/regressao02.png){fig-align="center" width="600"}
+
+$$gl_{reg} = 1$$
+
+$$gl_{res} = n-2$$
+
+$$gl_{total} = n-1$$
+
+$$SQ_{T   otal} = \sum_{i=1}^{n} (y_i - \bar{y})^2 = \sum_{i=1}^{n} y_i^2 - \frac{\left ( \sum_{i=1}^{n} y_i \right )^2}{n}$$
+
+$$SQ_{Reg} = \sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2 = \frac{\left ( \sum_{i=1}^{n} x_i y_i - \frac{1}{n} \sum_{i=1}^{n} x_i \sum_{i=1}^{n} y_i \right )^2}{\sum_{i=1}^{n}  x_i^2 - \frac{1}{n} (\sum_{i=1}^{n} x_i)^2}$$
+
+$$SQ_{Res} = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = SQ_{Total   } - SQ_{Reg}$$
+
+$$QM_{Reg} = SQ_{Reg} / gl_{reg}$$
+
+$$QM_{Res} = SQ_{Res} / gl_{res}$$
+
+$$F_{calc} = QM_{Reg} / QM_{Res}$$
+
+$$F_{tab} (1;n-2; \alpha)$$
+
+Se $F_{calc} > F_{tab}$, rejeita-se a hipótese nula $H_0$.
+
+Considerando o exemplo de altura da árvore ($Y$) e o diâmetro à altura do peito ($X$):
+
+![Etapas intermediárias da análise de variância em modelos de regressão.](img/regressao03.png){fig-align="center" width="600"}
+
+para $F_{tab} (1;8;\alpha = 0,05) = 5,32$
+
+![Quadro de análise de variância para um modelo de regressão.](img/regressao04.png){fig-align="center" width="600"}
+
+Como $F_{calc} > F_{tab}$, rejeita-se a hipótese nula $H_0$, portanto há indícios de que o parâmetro $\beta$ é importante para explicar o fenômeno estudado.
+
+Utilizando o *software* R:
+
+::: panel-tabset
+## Anova
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+#| code-fold: true
+
+anova(mod)
+```
+:::
+
+Pode-se demonstrar que:
+
+$$\widehat{Var}(\hat{\alpha}) = \frac{1}{n} + \frac{\bar{X}^2}{\sum_{i=1}^{n} x_i^2 - \frac{(\sum_{i=1}^{n}x_i)^2}{n}} QM_{Res}$$
+
+$$\widehat{Var}(\hat{\beta}) = \left ( \frac{1}{\sum_{i=1}^{n} x_i^2 - \frac{(\sum_{i=1}^{n}x_i)^2}{n}} \right )QM_{Res}$$
+
+$$\widehat{Cov}(\hat{\alpha}, \hat{\beta}) =  - \frac{\bar{X}^2}{\sum_{i=1}^{n} x_i^2 - \frac{(\sum_{i=1}^{n}x_i)^2}{n}} QM_{Res}$$
+
+## Testes de hipóteses para o parâmetro $\alpha$
+
+  - População: $Y \sim N(\mu, \sigma^2)$; $\mu = E(Y) = \alpha + \beta x$; $\sigma^2 = QM_{Res}$
+
+  - Hipóteses: $\left\{\begin{matrix} H_0: \alpha = 0 \; (\mbox{hipótese nula}) \\ H_a: \alpha <, \neq, > 0 \; (\mbox{hipótese alternativa}) \end{matrix} \right.$
+
+Calcula-se a estatística do teste:
+
+$$t_{calc} = \frac{\hat{\alpha} - \alpha_0}{\sqrt{\widehat{Var}(\hat{\alpha})}} = \frac{\hat{\alpha} - \alpha_0}{\sqrt{\left ( \frac{1}{n} + \frac{\bar{X}^2}{\sum_{i=1}^{n} x_i^2 - \frac{(\sum_{i=1}^{n}x_i)^2}{n}} \right )QM_{Res}}}$$
+
+e compara-se com um quantil $t_{tab}$ da distribuição $t$ de Student com $n - 2$ graus de liberdade, que represente o indicado pela hipótese alternativa. Em geral usa-se $\alpha_0 = 0$.
+
+## Testes de hipóteses para o parâmetro $\beta$
+
+  - População: $Y \sim N(\mu, \sigma^2)$; $\mu = E(Y) = \alpha + \beta x$; $\sigma^2 = QM_{Res}$
+
+  - Hipóteses: $\left\{\begin{matrix} H_0: \beta = 0 \; (\mbox{hipótese nula}) \\ H_a: \beta <, \neq, > 0 \; (\mbox{hipótese alternativa}) \end{matrix} \right.$
+
+Calcula-se a estatística do teste:
+
+$$t_{calc} = \frac{\hat{\beta} - \beta_0}{\sqrt{\widehat{Var}(\hat{\beta})}} = \frac{\hat{\beta} - \beta_0}{\sqrt{\frac{QM_{Res}}{\sum_{i=1}^{n} x_i^2 - \frac{(\sum_{i=1}^{n}x_i)^2}{n}}}}$$
+
+e compara-se com um quantil $t_{tab}$ da distribuição $t$ de Student com $n - 2$ graus de liberdade, que represente o indicado pela hipótese alternativa. Em geral usa-se $\beta_0 = 0$.
+
+## verificação da qualidade do ajuste
+
+:::callout-note
+# Resíduo
+
+Diferença entre o valor observado ($y_i$) e o valor predito ($\hat{y}_i$), para um determinado valor $x_i$:
+
+$e_i = y_i - \hat{y}_i$.
+:::
+
+O **primeiro** resíduo simples é dado por:
+
+$$e_1 = 8,1 - (4,5368 + 0,7053 \; \mbox{x} \; 5,9) = 8,1 - 8,7 = -0,6$$
+
+:::callout-important
+# Modelo bem ajustado
+
+é aquele que apresenta resíduos pequenos.
+
+Resíduos simples $\Rightarrow$ depende das unidades de medida.
+
+Resíduos padronizados $\Rightarrow z_i = \frac{e_i}{\sqrt{\sum_{i=1}^{n} e_i^2 / (n-2)}} = \frac{e_i}{\sqrt{QM_{Res}}}$ 
+:::
+
+**Na prática**: erro pequeno $\Rightarrow$ resíduo padronizado entre $-2 \; \mbox{e} \; 2$. 
+
+## Exemplo
+
+Considerando-se o exemplo de altura da árvore ($Y$) e o diâmetro à altura do peito ($X$):
+
+::: panel-tabset
+## Gráfico do ajuste
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+#| code-fold: true
+
+with(dados4,
+     plot(x,y,
+          xlab="DAP",
+          ylab="Altura",
+          pch=16)
+     )
+lines(x,4.5368 + 0.7053*x)
+```
+
+## Analise dos resíduos
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+#| code-fold: true
+
+par(mfrow=c(1,2))
+plot(rstandard(mod) ~ predict(mod), ylim=c(-3,3),
+     xlab="Valores preditos", ylab="Resíduos Padronizados")
+abline(h=0,lty=2,col="red")
+abline(h=-2,lty=2,col="blue")
+abline(h=2,lty=2,col="blue")
+
+plot(rstudent(mod) ~ x, ylim=c(-3,3),
+     xlab="DAP", ylab="Resíduos Padronizados")
+abline(h=0,lty=2,col="red")
+abline(h=-2,lty=2,col="blue")
+abline(h=2,lty=2,col="blue")
+```
+
+## Função em R
+
+```{r}
+#| echo: false
+#| error: false
+#| warning: false
+#| code-fold: true
+
+par(mfrow=c(2,2))
+plot(mod)
+```
+:::
+
+## Coeficiente de determinação $R^2$
+
+É um coeficiente que indica quanto da variabilidade na variável dependente $Y$ está sendo "explicada" pela variável $X$.
+
+$$R^2 = \frac{SQ_{Reg}}{SQ_{Total}} = \frac{\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}$$
+
+O valor de $R^2$ varia no intervalo de $0$ a $1$. Valores próximos de $1$ indicam que o modelo proposte é adequado para descrever o fenômeno.
+
+
+:::callou-important
+# Observação 
+
+Esse coeficiente apresenta uma relação diretamente proporcional ao número de parâmetros do modelo de regressão.
+:::
+
+## Exemplo
+
+Considerando-se o exemplo de altura da árvore ($Y$) e o diâmetro à altura do peito ($X$):
+
+![Etapas intermediárias da análise de variância em modelos de regressão.](img/regressao03.png){fig-align="center" width="600"}
+
+$$R^2 = \frac{\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2} = \frac{(8,7 - 13,6)^2 + \dots + (20,8 - 13,6)^2}{(8,1 - 13,6)^2 + \dots + (20,1 - 13,8)^2} = \frac{157,21}{162,33} = 0,97$$

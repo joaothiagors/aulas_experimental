@@ -1,0 +1,47 @@
+---
+title: "Relatório do zero"
+lang: pt
+format:
+  html:
+    theme:
+      light: minty
+      dark: darkly
+editor: visual
+---
+
+## Quarto 2
+
+### Quarto 3
+
+#### Quarto 4
+
+#### Quarto 5
+
+##### Quarto 6
+
+::: callout-warning
+Seu texto aqui!
+:::
+
+**Quarto enables you to weave together content and executable** code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+```{r}
+1 + 1
+```
+
+No Rmarkdown
+
+```{r, echo=TRUE}
+2 * 2
+```
+
+No Quarto
+
+```{r}
+#| echo: true
+2 * 2
+```
+
+------------------------------------------------------------------------
+
+![[Meu link](https://www.rladiesgyn.com/ "Etiqueta do meu link")](https://ariane.quarto.pub/rladies_goiania/img/emoji_1.png){fig-align="center" width="260"}

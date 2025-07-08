@@ -1,0 +1,4 @@
+- source: meu_primeiro_relatorio.qmd
+  quarto-pub:
+    - id: b3003a58-820b-41fc-85e6-33be6a35ab4f
+      url: 'https://quartopub.com/sites/estatistica/relatorio-do-zero'
