@@ -773,7 +773,7 @@ $$\sum_{i=1}^{n} (y_i - \bar{y})^2 = \sum_{i=1}^{n} (\hat{y_i} - \bar{y})^2 + \s
 
 Pode-se, ent~ao, verificar estatisticamente se as variáveis X e Y apresentam a suposta relação linear por meio da análise de variância, o que equivale a testar a hipótese:
 
-:::callout-note
+::: callout-note
 # Hipóteses
 
 $$y_i = \alpha + \beta x_i + \epsilon_i$$
@@ -868,7 +868,7 @@ e compara-se com um quantil $t_{tab}$ da distribuição $t$ de Student com $n - 
 
 ## verificação da qualidade do ajuste
 
-:::callout-note
+::: callout-note
 # Resíduo
 
 Diferença entre o valor observado ($y_i$) e o valor predito ($\hat{y}_i$), para um determinado valor $x_i$:
@@ -880,7 +880,7 @@ O **primeiro** resíduo simples é dado por:
 
 $$e_1 = 8,1 - (4,5368 + 0,7053 \; \mbox{x} \; 5,9) = 8,1 - 8,7 = -0,6$$
 
-:::callout-important
+::: callout-important
 # Modelo bem ajustado
 
 é aquele que apresenta resíduos pequenos.
@@ -958,7 +958,7 @@ $$R^2 = \frac{SQ_{Reg}}{SQ_{Total}} = \frac{\sum_{i=1}^{n} (\hat{y}_i - \bar{y})
 O valor de $R^2$ varia no intervalo de $0$ a $1$. Valores próximos de $1$ indicam que o modelo proposte é adequado para descrever o fenômeno.
 
 
-:::callou-important
+::: callout-important
 # Observação 
 
 Esse coeficiente apresenta uma relação diretamente proporcional ao número de parâmetros do modelo de regressão.

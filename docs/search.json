@@ -109,7 +109,7 @@
     "href": "relatorio_html/relatorio_html.html#coeficiente-de-determinação-r2",
     "title": "Correlação e Regressão",
     "section": "Coeficiente de determinação \\(R^2\\)",
-    "text": "Coeficiente de determinação \\(R^2\\)\nÉ um coeficiente que indica quanto da variabilidade na variável dependente \\(Y\\) está sendo “explicada” pela variável \\(X\\).\n\\[R^2 = \\frac{SQ_{Reg}}{SQ_{Total}} = \\frac{\\sum_{i=1}^{n} (\\hat{y}_i - \\bar{y})^2}{\\sum_{i=1}^{n} (y_i - \\bar{y})^2}\\]\nO valor de \\(R^2\\) varia no intervalo de \\(0\\) a \\(1\\). Valores próximos de \\(1\\) indicam que o modelo proposte é adequado para descrever o fenômeno."
+    "text": "Coeficiente de determinação \\(R^2\\)\nÉ um coeficiente que indica quanto da variabilidade na variável dependente \\(Y\\) está sendo “explicada” pela variável \\(X\\).\n\\[R^2 = \\frac{SQ_{Reg}}{SQ_{Total}} = \\frac{\\sum_{i=1}^{n} (\\hat{y}_i - \\bar{y})^2}{\\sum_{i=1}^{n} (y_i - \\bar{y})^2}\\]\nO valor de \\(R^2\\) varia no intervalo de \\(0\\) a \\(1\\). Valores próximos de \\(1\\) indicam que o modelo proposte é adequado para descrever o fenômeno.\n\n\n\n\n\n\nObservação\n\n\n\nEsse coeficiente apresenta uma relação diretamente proporcional ao número de parâmetros do modelo de regressão."
   },
   {
     "objectID": "relatorio_html/relatorio_html.html#exemplo-7",
