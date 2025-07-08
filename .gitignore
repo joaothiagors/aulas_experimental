@@ -1,4 +1,7 @@
-.Rproj.user
 .Rhistory
 .RData
+.Rproj.user/
 .Ruserdata
+*.Rproj
+*.log
+*.tmp
