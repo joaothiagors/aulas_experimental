@@ -1,0 +1,10 @@
+---
+title: "Página Inicial"
+format: html
+---
+
+# Bem-vindo ao site de análise estatística
+
+Este site apresenta uma análise de correlação e regressão com R.
+
+Acesse no menu acima ou clique [aqui](relatorio_html.qmd).

@@ -1,0 +1,18 @@
+```yaml
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Análise de Correlação e Regressão"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Início
+      - href: relatorio_html.qmd
+        text: Desenvolvimento
+
+format:
+  html:
+    theme: cosmo
+    toc: true
