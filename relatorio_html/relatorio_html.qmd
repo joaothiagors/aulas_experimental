@@ -98,7 +98,8 @@ colnames(dados) <- c("Nº", "Comprimento", "Peso")
 dados |> 
   reactable::reactable(
   searchable = TRUE, # Inserindo uma busca na tabela
-  outlined = TRUE # Linhas na tabela
+  outlined = TRUE, # Linhas na tabela
+  highlight = TRUE
   ) 
 ```
 
@@ -148,7 +149,8 @@ colnames(data) <- c("Nº", "Altura", "DAP")
 data |> 
   reactable::reactable(
   searchable = TRUE, # Inserindo uma busca na tabela
-  outlined = TRUE # Linhas na tabela
+  outlined = TRUE, # Linhas na tabela
+  highlight = TRUE # Linhas na tabela
   ) 
 ```
 
@@ -198,7 +200,8 @@ colnames(dados2) <- c("Nº", "Radiação", "Espaçamento")
 dados2 |> 
   reactable::reactable(
   searchable = TRUE, # Inserindo uma busca na tabela
-  outlined = TRUE # Linhas na tabela
+  outlined = TRUE, # Linhas na tabela
+  highlight = TRUE # Linhas na tabela
   ) 
 ```
 
@@ -249,7 +252,8 @@ colnames(data2) <- c("Estação", "Temperatura", "Salinidade")
 data2 |> 
   reactable::reactable(
   searchable = TRUE, # Inserindo uma busca na tabela
-  outlined = TRUE # Linhas na tabela
+  outlined = TRUE, # Linhas na tabela
+  highlight = TRUE # Linhas na tabela
   ) 
 ```
 
@@ -348,7 +352,7 @@ with(data_new,
 ```
 :::
 
-Aplicação
+## Aplicação
 
 $$ r = \frac{10(1970,51) - (128,5)(136,0)}{\sqrt{10(1967,23)-(128,5)^2}\sqrt{10(2011,94)-(136,0)^2}}$$
 
@@ -429,7 +433,7 @@ $$  r = \frac{188,25}{\sqrt{(40,88)}\sqrt{(909,50)}} = 0,976  $$
 
 -   O *coeficiente de correlação de Pearson* é uma medida da intensidade de associação linear existente entre duas variáveis quantitativas.
 
--   Também é conhecido como *coeficiente de correlação de Pearso*n, pois sua fórmula de cálculo foi proposta por Karl Pearson em 1896.
+-   Também é conhecido como *coeficiente de correlação de Pearson*, pois sua fórmula de cálculo foi proposta por Karl Pearson em 1896.
 
 -   O coeficiente de correlação de Pearson é denominado por $\rho$ e sua estimativa por $r$.
 
@@ -447,7 +451,7 @@ $$  r = \frac{188,25}{\sqrt{(40,88)}\sqrt{(909,50)}} = 0,976  $$
 
 # Teste de Hipótese sobre a correlação
 
--   Quando se calcula o coeficiente r em uma amostra, é necessário ter em mente que se está, na realidade, estimando a associação verdadeira entre $X$ e $Y$ existente na população.
+-   Quando se calcula o coeficiente $r$ em uma amostra, é necessário ter em mente que se está, na realidade, estimando a associação verdadeira entre $X$ e $Y$ existente na população.
 
 -   A correlação na população é designada por $\rho$.
 
@@ -573,7 +577,7 @@ O estudo da regressão aplica-se àquelas situações em que há razões para su
 
 Muitas são as relações de causa e efeito que podem ser resumidas por linhas retas, evitando-se, assim, o uso de tabelas de dados para mostrar a relação.
 
-A análise de regressão linear simples é um procedimento que fornece equações de linhas retas (por isso, o termo "linear" ), que descrevem fenômenos em que há uma variável independente apenas (por isso, "simples" ).
+A análise de regressão linear simples é um procedimento que fornece equações de linhas retas (por isso, o termo "linear"), que descrevem fenômenos em que há uma variável independente apenas (por isso, "simples").
 
 ::: callout-note
 # Variáveis
@@ -702,7 +706,8 @@ colnames(dados4) <- c("Observação", "x", "y", "x^2", "y^2", "xy")
 dados4 |> 
   reactable::reactable(
   searchable = TRUE, # Inserindo uma busca na tabela
-  outlined = TRUE # Linhas na tabela
+  outlined = TRUE, # Linhas na tabela
+  highlight = TRUE 
   ) 
 ```
 
@@ -764,7 +769,7 @@ $$\hat{y}_i = 4,5368 + 0,7053 x_i$$
 
 ## Análise de Variância
 
-A análise de vari6ancia representa o desdobramento da soma de quadrados total ($SQ_{Total}$) em diversos componentes que podem explicar o fen^omeno em questão.
+A análise de variância representa o desdobramento da soma de quadrados total ($SQ_{Total}$) em diversos componentes que podem explicar o fen^omeno em questão.
 
 No caso da regressão linear simples, pode-se desdobrar a $SQ_{Total}$ em soma de quadrados da regressão ($SQ_{Reg}$) e soma de quadrados dos resíduos ($SQ_{Res}$).
 
@@ -772,7 +777,7 @@ $$SQ_{Total} = SQ_{Reg} + SQ_{Res}$$
 
 $$\sum_{i=1}^{n} (y_i - \bar{y})^2 = \sum_{i=1}^{n} (\hat{y_i} - \bar{y})^2 + \sum_{i=1}^{n} (y_i - \hat{y_i})^2$$
 
-Pode-se, ent~ao, verificar estatisticamente se as variáveis X e Y apresentam a suposta relação linear por meio da análise de variância, o que equivale a testar a hipótese:
+Pode-se, então, verificar estatisticamente se as variáveis X e Y apresentam a suposta relação linear por meio da análise de variância, o que equivale a testar a hipótese:
 
 ::: callout-note
 # Hipóteses
