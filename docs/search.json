@@ -165,6 +165,13 @@
     "href": "index.html",
     "title": "Página Inicial",
     "section": "",
-    "text": "Bem-vindo ao site de análise estatística\nEste site apresenta uma análise de correlação e regressão com R.\nAcesse no menu acima ou clique aqui."
+    "text": "Bem-vindo ao site de análise estatística\nEste site apresenta arquivos das disciplinas de Estatística Experimental e Experimentação Agronômica utilizando linguagem R.\nAcesse no menu acima ou clique aqui."
+  },
+  {
+    "objectID": "relatorio_html/relatorio_html.html#análise-de-regressão-com-o-pacote-textttreport",
+    "href": "relatorio_html/relatorio_html.html#análise-de-regressão-com-o-pacote-textttreport",
+    "title": "Correlação e Regressão",
+    "section": "Análise de regressão com o pacote \\(\\texttt{report}\\)",
+    "text": "Análise de regressão com o pacote \\(\\texttt{report}\\)\n\nRelatório\n\n\n\n\nWe fitted a linear model (estimated using OLS) to predict y with x (formula: y\n~ x). The model explains a statistically significant and substantial proportion\nof variance (R2 = 0.97, F(1, 8) = 245.70, p &lt; .001, adj. R2 = 0.96). The\nmodel's intercept, corresponding to x = 0, is at 4.54 (95% CI [3.08, 5.99],\nt(8) = 7.19, p &lt; .001). Within this model:\n\n  - The effect of x is statistically significant and positive (beta = 0.71, 95%\nCI [0.60, 0.81], t(8) = 15.67, p &lt; .001; Std. beta = 0.98, 95% CI [0.84, 1.13])\n\nStandardized parameters were obtained by fitting the model on a standardized\nversion of the dataset. 95% Confidence Intervals (CIs) and p-values were\ncomputed using a Wald t-distribution approximation."
   }
 ]

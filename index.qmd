@@ -5,6 +5,6 @@ format: html
 
 # Bem-vindo ao site de análise estatística
 
-Este site apresenta uma análise de correlação e regressão com R.
+Este site apresenta arquivos das disciplinas de Estatística Experimental e Experimentação Agronômica utilizando linguagem R.
 
 Acesse no menu acima ou clique [aqui](relatorio_html.html).

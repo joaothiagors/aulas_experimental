@@ -971,3 +971,4 @@ Considerando-se o exemplo de altura da árvore ($Y$) e o diâmetro à altura do 
 ![Etapas intermediárias da análise de variância em modelos de regressão.](img/regressao03.png){fig-align="center" width="600"}
 
 $$R^2 = \frac{\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2} = \frac{(8,7 - 13,6)^2 + \dots + (20,8 - 13,6)^2}{(8,1 - 13,6)^2 + \dots + (20,1 - 13,8)^2} = \frac{157,21}{162,33} = 0,97$$
+
