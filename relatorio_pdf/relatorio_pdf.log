@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.25)  15 JUN 2025 14:12
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.25)  7 JUL 2025 23:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -143,26 +143,48 @@ LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
 \g__um_fonts_used_int=\count292
 \l__um_primecount_int=\count293
 \g__um_primekern_muskip=\muskip18
-(/Users/thiagosousa/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex)))
+(/Users/thiagosousa/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex))) (/Users/thiagosousa/Library/TinyTeX/texmf-dist/tex/latex/libertinus/libertinus.sty
+Package: libertinus 2020/05/06 v. 0.02 (Herbert Voss) Supports libertinus fonts for pdflatex/lualatex/xelatex
+(/Users/thiagosousa/Library/TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+(/Users/thiagosousa/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/Users/thiagosousa/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks22
+\XKV@tempa@toks=\toks23
+(/Users/thiagosousa/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/keyval.tex))
+\XKV@depth=\count294
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+)) (/Users/thiagosousa/Library/TinyTeX/texmf-dist/tex/latex/libertinus-otf/libertinus-otf.sty
+Package: libertinus-otf 2023/09/21 v. 0.32 (Herbert Voss) Supports libertinus fonts for lualatex and xelatex.
+(/Users/thiagosousa/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+) (/Users/thiagosousa/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+) (/Users/thiagosousa/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
+)
+Requested font "[LibertinusSerif-Regular.otf]/OT" at 9.99997pt
+ -> font not found, using "nullfont"
 
-! LaTeX Error: File `libertinus.sty' not found.
+! Package fontspec Error: 
+(fontspec)                The font "LibertinusSerif-Regular" cannot be
+(fontspec)                found; this may be but usually is not a fontspec
+(fontspec)                bug. Either there is a typo in the font name/file,
+(fontspec)                the font is not installed (correctly), or there is
+(fontspec)                a bug in the underlying font loading engine
+(fontspec)                (XeTeX/luaotfload).
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Emergency stop.
-<read *> 
-         
-l.22 \ifPDFTeX
-              \else^^M 
+For immediate help type H <return>.
+ ...                                              
+                                                  
+l.232 ]
+        
 Here is how much of TeX's memory you used:
- 7455 strings out of 476232
- 160461 string characters out of 5785834
+ 7858 strings out of 476232
+ 169591 string characters out of 5785834
  738246 words of memory out of 5000000
- 30035 multiletter control sequences out of 15000+600000
+ 30407 multiletter control sequences out of 15000+600000
  558085 words of font info for 38 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 90i,0n,95p,307b,154s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,0n,106p,307b,162s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 No pages of output.

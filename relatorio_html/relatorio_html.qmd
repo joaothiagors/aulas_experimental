@@ -578,9 +578,10 @@ A análise de regressão linear simples é um procedimento que fornece equaçõe
 ::: callout-note
 # Variáveis
 
-$X \Rightarrow $ Variável **independente** 
+$X \Rightarrow$ Variável **independente** 
 
-$Y \Rightarrow $ Variável **dependente**
+$Y \Rightarrow$ Variável **dependente**
+
 :::
 
 ::: callout-note
@@ -707,7 +708,7 @@ dados4 |>
 
 ## Estimativas dos coeficientes
 ```{r}
-#| echo: false
+#| echo: true
 #| error: false
 #| warning: false
 #| code-fold: true
@@ -825,7 +826,7 @@ Utilizando o *software* R:
 ## Anova
 
 ```{r}
-#| echo: false
+#| echo: true
 #| error: false
 #| warning: false
 #| code-fold: true
@@ -866,7 +867,7 @@ $$t_{calc} = \frac{\hat{\beta} - \beta_0}{\sqrt{\widehat{Var}(\hat{\beta})}} = \
 
 e compara-se com um quantil $t_{tab}$ da distribuição $t$ de Student com $n - 2$ graus de liberdade, que represente o indicado pela hipótese alternativa. Em geral usa-se $\beta_0 = 0$.
 
-## verificação da qualidade do ajuste
+## Verificação da qualidade do ajuste
 
 ::: callout-note
 # Resíduo
@@ -900,7 +901,7 @@ Considerando-se o exemplo de altura da árvore ($Y$) e o diâmetro à altura do 
 ## Gráfico do ajuste
 
 ```{r}
-#| echo: false
+#| echo: true
 #| error: false
 #| warning: false
 #| code-fold: true
@@ -917,7 +918,7 @@ lines(x,4.5368 + 0.7053*x)
 ## Analise dos resíduos
 
 ```{r}
-#| echo: false
+#| echo: true
 #| error: false
 #| warning: false
 #| code-fold: true
@@ -939,7 +940,7 @@ abline(h=2,lty=2,col="blue")
 ## Função em R
 
 ```{r}
-#| echo: false
+#| echo: true
 #| error: false
 #| warning: false
 #| code-fold: true
@@ -962,6 +963,7 @@ O valor de $R^2$ varia no intervalo de $0$ a $1$. Valores próximos de $1$ indic
 # Observação 
 
 Esse coeficiente apresenta uma relação diretamente proporcional ao número de parâmetros do modelo de regressão.
+
 :::
 
 ## Exemplo

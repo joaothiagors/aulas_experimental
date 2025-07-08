@@ -8,7 +8,7 @@ website:
     left:
       - href: index.qmd
         text: Início
-      - href: relatorio_html.qmd
+      - href: relatorio_html.html
         text: Correlação e Regressão
 
 format:
